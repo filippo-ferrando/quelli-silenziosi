@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guestbook</title>
+    <meta http-equiv="refresh" content="5"/>
+</head>
+<body>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Inserisci il tuo nome">
+        <br>
+        <textarea name="comment" placeholder="Inserisci un commento"></textarea>
+        <br>
+        <input type="file" name="image">
+        <br>
+        <input type="submit" value="Invia">
+    </form>
+    {% for entry in entries %}
+        {% set entry = entry.strip().split(" - ") %}
+        <h1>{{ entry[0] }} ha lasciato un commento!</h1>
+        <p>{{ entry[1] }}</p>
+        <img src="{{ url_for('static', filename='img/' + entry[2]) }}" width="450" >
+    {% endfor %}
+</body>
+</html>
+
